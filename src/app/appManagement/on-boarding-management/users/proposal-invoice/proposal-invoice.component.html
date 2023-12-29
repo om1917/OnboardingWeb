@@ -1,0 +1,75 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">View PDf</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="file-priview-container">
+            <ngx-extended-pdf-viewer [useBrowserLocale]="true" [handTool]="false" [base64Src]="selectedFileB64"
+                [height]="'60vh'" [showHandToolButton]="true">
+            </ngx-extended-pdf-viewer>
+        </div>
+    </div>
+</ng-template>
+<div class="page-wrapper">
+    <div class="page-content">
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">User PI</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <!-- <li class="breadcrumb-item"><a routerLink=""><i class="bx bx-home-alt"></i></a>
+                        </li> -->
+                        <li class="breadcrumb-item active" aria-current="page">User PI Download</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card radius-10 mb-0">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h5 class="card-title mb-1">Proposal Invoice</h5>
+                            </div>
+                        </div>
+                        <hr />
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-4">
+
+                                    <label class="form-label">PI</label>
+                                    :
+                                    <label *ngIf="isavail==0" class="text-warning">Pending</label>
+                                    <button *ngIf="isavail!=0" href="javascript:;" title="Download"
+                                        class="ms-2 text-primary bg-light-primary border-0" (click)="btndownload(pi)">
+                                        <i class="bx bxs-download"></i>
+                                    </button>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-4">
+
+                                    <label class="form-label">Cover Letter</label>
+                                    :
+                                    <label *ngIf="isavail==0" class="text-warning">Pending</label>
+                                    <button *ngIf="isavail!=0" href="javascript:;" title="Download"
+                                        class="ms-2 text-primary bg-light-primary border-0" (click)="btndownload(CoverLetter)">
+                                        <i class="bx bxs-download"></i>
+                                    </button>
+                                </div>
+                                <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-4">
+
+                                    <label class="form-label">Proposal</label>
+                                    :
+                                    <label *ngIf="isavail==0" class="text-warning">Pending</label>
+                                    <button *ngIf="isavail!=0" href="javascript:;" title="Download"
+                                        class="ms-2 text-primary bg-light-primary border-0" (click)="btndownload(Proposal)">
+                                        <i class="bx bxs-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

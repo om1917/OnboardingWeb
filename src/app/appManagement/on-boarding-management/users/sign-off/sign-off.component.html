@@ -1,0 +1,91 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">View PDf</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="file-priview-container">
+            <ngx-extended-pdf-viewer [useBrowserLocale]="true" [handTool]="false" [base64Src]="selectedFileB64"
+                [height]="'60vh'" [showHandToolButton]="true">
+            </ngx-extended-pdf-viewer>
+        </div>
+    </div>
+</ng-template>
+<div class="page-wrapper">
+    <div class="page-content">
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Sign Off and Data Handover</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <!-- <li class="breadcrumb-item"><a routerLink=""><i class="bx bx-home-alt"></i></a>
+                        </li> -->
+                        <li class="breadcrumb-item active" aria-current="page">User Sign Off Document Download</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card radius-10 mb-0">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <h5 class="card-title mb-1">Sign Off and Data Handover</h5>
+                            </div>
+                        </div>
+                        <hr />
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-xxl-12 col-xl-12 col-md-12 col-sm-12">
+
+                                    <label class="form-label">Document</label>
+                                    :
+                                    <label *ngIf="isAvailableSignOff==0" class="text-warning">Pending</label>
+
+                                    <button *ngIf="isAvailableSignOff!=0" href="javascript:;" title="Download"
+                                        class="ms-2 text-danger bg-light-danger border-0"
+                                        (click)="btndownload(signOffDocId)">
+                                        <i class="bx bxs-download fs-4"></i>
+                                    </button>
+                                    <button *ngIf="isAvailableSignOff!=0" href="javascript:;" title="View Document"
+                                        class="ms-2 text-primary bg-light-primary border-0"
+                                        (click)="viewDocument(signOffDocId)"><i class='bx bxs-show fs-4'></i></button>
+                                </div>
+                            </div>
+                            <div class="row g-3" *ngIf="isAvailableSignOff==0">
+                                <div class="col-xxl-12 col-xl-12 col-md-12 col-sm-12">
+                                    <label class="form-label">Upload Sign off and Data Handover</label>
+                                </div>
+                                <input type="file" class="form-control" formControlName="Uploadfile" name="Uploadfile"
+                                    (change)="handleFileInput($event)" id="Uploadfile"
+                                    placeholder="Upload Signed Request Letter"
+                                    [ngClass]="{ 'is-invalid':(signOffFormControl?.['Uploadfile'].errors 
+                                && (signOffFormControl?.['Uploadfile'].dirty || (submitted && fileUploadValidation)))}">
+                                <div class="help-block">Only PDF files are allowed to be uploaded</div>
+                                <span class="invalid-feedback"
+                                    *ngIf="(submitted) && signOffFormControl?.['Uploadfile'].errors?.['required']">
+                                    file is required.
+                                </span>
+                                <span class="text-danger" *ngIf="fileUploadValidation==true">Please
+                                    upload PDF file only.</span>
+                                <span class="text-danger" *ngIf="fileSizeValidation>500">Please
+                                    file should be smaller than 500 KB</span>
+                            </div>
+                            <div class="row g-3 mt-1">
+                                <div class="col-xxl-12 col-xl-12 col-md-12 col-sm-12 text-center">
+                                    <button type="button" class="btn btn-primary me-3" (click)="btnSubmit()">
+                                        Submit
+                                    </button>
+                                    <button type="submit" class="btn btn-danger" (click)="btncancel()">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
